@@ -14,7 +14,7 @@ const send = (item_ids) => {
       .then(res => {
         const story = res.data
         console.log(story)
-        const message = `${story.title} - ${story.url}`
+        const message = `${story.title} - ${story.url ? story.url : `https://news.ycombinator.com/item?id=${i}`}`
         console.log(message)
 
         webhook.send(message, function(err, header, statusCode, body) {
@@ -44,7 +44,7 @@ const listen = function (intervalMil) {
       const diff =_.difference(newStories, this.stories)
       const new_items = diff.filter( d => this.stories.find )
 
-      if (new_items.length == 0) return console.log('nothing new')
+      if (new_items.length == 0) return //console.log('nothing new')
 
       this.stories = this.stories.concat(new_items)
 
