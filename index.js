@@ -3,6 +3,7 @@ const axios = require('axios'),
   _ = require('lodash')
 
 const url = process.env.SLACK_WEBHOOK_URL
+if (!url) throw new Error("SLACK_WEBHOOK_URL environmental variable is required")
 
 const webhook = new IncomingWebhook(url);
 
